@@ -205,12 +205,14 @@ return;
 
 static void __exit hello_exit(void)
 {
-	int devno;
+	dev_t devno;
 
 	printk(KERN_INFO "cleanup_module() called\n");
-	devno = MKDEV(MAJOR(devt), 0);
-
+	devno = MKDEV(MAJOR(devt), MINOR(devt));
 	device_destroy( class, devt );
+	devno = MKDEV(MAJOR(devt), MINOR(devt)+1);
+	device_destroy( class, devt );
+
 	class_destroy( class );
 	cdev_del( &cdev );
 	unregister_chrdev_region(devt,MINOR_COUNT);
