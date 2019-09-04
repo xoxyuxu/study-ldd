@@ -1,3 +1,13 @@
+/*
+ * キャラクタデバイスの生成、クラス登録、デバイス登録で以下のファイルが生成される。
+ * マイナーバージョンを複数にして、割り込み要因毎にデバイスを作成すれば
+ * 複数のファイルを生成できる。オープンで file->priv にどこを開けたのかを残しておけば、
+ * 選択できるね..
+ *
+ * /sys/cls_hello/dev_hello/{dev, power, subsystem,uevent}
+ * /dev/dev_hello
+ */
+
 #include <linux/module.h>
 #include <linux/cdev.h>
 #include <linux/errno.h>
